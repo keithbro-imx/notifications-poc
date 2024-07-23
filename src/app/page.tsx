@@ -5,6 +5,14 @@ import { useState } from "react";
 export default function Home() {
   const [status, setStatus] = useState("none");
   const click = async () => {
+    const registration = await navigator.serviceWorker.register(
+      "/service-worker.js",
+      {
+        scope: "/",
+      }
+    );
+    console.log({ registration });
+
     setStatus("permissionRequestPending");
     try {
       const res = await Notification.requestPermission();
@@ -21,16 +29,14 @@ export default function Home() {
       setStatus(JSON.stringify(e));
     }
 
-    const x = setInterval(() => {
-      console.log("sending");
-      const notif = new Notification("Hello " + Math.random(), {
-        body: "Hello, World!" + Math.random(),
-      });
-      notif.addEventListener("show", (event) => {
-        console.log("Notification shown", event);
-      });
-      console.log({ notif });
-    }, 2000);
+    console.log("sending");
+    const notif = new Notification("Hello " + Math.random(), {
+      body: "Hello, World!" + Math.random(),
+    });
+    notif.addEventListener("show", (event) => {
+      console.log("Notification shown", event);
+    });
+    console.log({ notif });
   };
 
   return (
