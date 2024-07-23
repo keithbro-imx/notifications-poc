@@ -5,15 +5,17 @@ import { useState } from "react";
 export default function Home() {
   const [status, setStatus] = useState("none");
   const click = async () => {
+    setStatus("beforeRegisterServiceWorker");
     const registration = await navigator.serviceWorker.register(
       "/service-worker.js",
       {
         scope: "/",
       }
     );
+    setStatus("afterRegisterServiceWorker");
     console.log({ registration });
 
-    setStatus("permissionRequestPending");
+    setStatus("beforeRequestPermission");
     try {
       const res = await Notification.requestPermission();
       console.log({ res });
