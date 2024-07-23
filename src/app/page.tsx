@@ -5,13 +5,17 @@ import { useState } from "react";
 export default function Home() {
   const [status, setStatus] = useState("none");
   const click = async () => {
-    setStatus('permissionRequestPending')
-    const res = await Notification.requestPermission();
-    console.log({ res });
-    if (res === 'granted') {
-      setStatus('permissionGranted');
-    } else {
-      setStatus('permissionDenied');
+    setStatus("permissionRequestPending");
+    try {
+      const res = await Notification.requestPermission();
+      console.log({ res });
+      if (res === "granted") {
+        setStatus("permissionGranted");
+      } else {
+        setStatus("permissionDenied");
+      }
+    } catch (e) {
+      setStatus("boom");
     }
 
     const x = setInterval(() => {
