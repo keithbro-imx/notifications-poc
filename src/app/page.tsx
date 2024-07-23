@@ -15,7 +15,11 @@ export default function Home() {
     setStatus("afterRegisterServiceWorker");
     console.log({ registration });
 
-    setStatus("beforeRequestPermission");
+    if (!('Notification' in window)) {
+      setStatus("Notification not supported");
+      return;
+    }
+
     try {
       const res = await Notification.requestPermission();
       console.log({ res });
