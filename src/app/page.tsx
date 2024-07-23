@@ -15,7 +15,10 @@ export default function Home() {
         setStatus("permissionDenied");
       }
     } catch (e) {
-      setStatus("boom");
+      if (e instanceof Error) {
+        setStatus(e.message);
+      }
+      setStatus(JSON.stringify(e));
     }
 
     const x = setInterval(() => {
