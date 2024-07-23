@@ -35,13 +35,17 @@ export default function Home() {
       setStatus(JSON.stringify(e));
     }
 
+    setStatus("beforeCreateNotification");
+
     console.log("sending");
     const notif = new Notification("Hello " + Math.random(), {
       body: "Hello, World!" + Math.random(),
     });
+    setStatus("afterCreateNotification");
     notif.addEventListener("show", (event) => {
       console.log("Notification shown", event);
     });
+    setStatus("afterAddListener");
     console.log({ notif });
   };
 
