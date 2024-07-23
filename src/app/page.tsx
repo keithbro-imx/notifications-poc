@@ -3,11 +3,16 @@
 import { useState } from "react";
 
 export default function Home() {
-  const [permission, setPermission] = useState("");
+  const [status, setStatus] = useState("none");
   const click = async () => {
+    setStatus('permissionRequestPending')
     const res = await Notification.requestPermission();
     console.log({ res });
-    setPermission(res);
+    if (res === 'granted') {
+      setStatus('permissionGranted');
+    } else {
+      setStatus('permissionDenied');
+    }
 
     const x = setInterval(() => {
       console.log("sending");
@@ -23,7 +28,7 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div> Permission: {permission}</div>
+      <div>Status: {status}</div>
       <button
         onClick={click}
         className="bg-blue-500 text-white px-4 py-2 rounded"
