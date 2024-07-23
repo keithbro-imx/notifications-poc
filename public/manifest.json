@@ -1,3 +1,5 @@
 {
-    "display": "standalone"
+    "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+    "display": "standalone",
+    "start_url": "/"
 }
