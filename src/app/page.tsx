@@ -15,7 +15,7 @@ export default function Home() {
     setStatus("afterRegisterServiceWorker");
     console.log({ registration });
 
-    if (!('Notification' in window)) {
+    if (!("Notification" in window)) {
       setStatus("Notification not supported");
       return;
     }
@@ -37,16 +37,13 @@ export default function Home() {
 
     setStatus("beforeCreateNotification");
 
-    console.log("sending");
-    const notif = new Notification("Hello " + Math.random(), {
-      body: "Hello, World!" + Math.random(),
-    });
-    setStatus("afterCreateNotification");
-    notif.addEventListener("show", (event) => {
-      console.log("Notification shown", event);
-    });
-    setStatus("afterAddListener");
-    console.log({ notif });
+    setTimeout(() => {
+      console.log("sending");
+      registration.showNotification("Hello " + Math.random(), {
+        body: "Hello, World!" + Math.random(),
+      });
+      setStatus("afterCreateNotification");
+    }, 5000);
   };
 
   return (
