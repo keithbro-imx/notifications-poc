@@ -39,10 +39,16 @@ export default function Home() {
 
     setTimeout(() => {
       console.log("sending");
-      registration.showNotification("Hello " + Math.random(), {
-        body: "Hello, World!" + Math.random(),
-      });
-      setStatus("afterCreateNotification");
+      registration
+        .showNotification("Hello " + Math.random(), {
+          body: "Hello, World!" + Math.random(),
+        })
+        .then(() => {
+          setStatus("afterCreateNotification");
+        })
+        .catch((e) => {
+          setStatus("createNotifFailed");
+        });
     }, 5000);
   };
 
