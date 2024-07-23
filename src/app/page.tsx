@@ -40,8 +40,8 @@ export default function Home() {
     setTimeout(() => {
       console.log("sending");
       registration
-        .showNotification("Hello " + Math.random(), {
-          body: "Hello, World!" + Math.random(),
+        .showNotification("Immutable Gems", {
+          body: "Time to claim your reward!",
         })
         .then(() => {
           setStatus("afterCreateNotification");

@@ -1,5 +1,14 @@
 {
     "$schema": "https://json.schemastore.org/web-manifest-combined.json",
     "display": "standalone",
-    "start_url": "/"
+    "start_url": "/",
+    "name": "Immutable Gems",
+    "short_name": "Gems",
+    "icons": [
+        {
+            "src": "/image.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        }
+    ]
 }
