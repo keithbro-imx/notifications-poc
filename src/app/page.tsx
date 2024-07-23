@@ -40,8 +40,9 @@ export default function Home() {
     setTimeout(() => {
       console.log("sending");
       registration
-        .showNotification("Immutable Gems", {
-          body: "Time to claim your reward!",
+        .showNotification("Daily Gem Reminder 💎", {
+          body: "15 minutes left to claim your gems!",
+          icon: "/image.png",
         })
         .then(() => {
           setStatus("afterCreateNotification");
